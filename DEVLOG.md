@@ -31,3 +31,7 @@ I will at least format this data
 I'm jonesin for some starfield but been too poor to buy it lol, I got AC6 though.
 
 I will use this to check if I can get it or not
+
+1:49 PM
+
+I do miss working on hardware projects, remote or unemployed was nice, damn
