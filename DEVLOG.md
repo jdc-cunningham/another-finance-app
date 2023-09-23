@@ -25,3 +25,9 @@ damn... I've lost motivation
 didn't have a goal in mind/aimless
 
 I will at least format this data
+
+1:37 PM
+
+I'm jonesin for some starfield but been too poor to buy it lol, I got AC6 though.
+
+I will use this to check if I can get it or not
