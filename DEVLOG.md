@@ -18,3 +18,10 @@ free yourself boy
 
 - [ ] replace bills with card values from net worth
 
+1:15 PM
+
+damn... I've lost motivation
+
+didn't have a goal in mind/aimless
+
+I will at least format this data
