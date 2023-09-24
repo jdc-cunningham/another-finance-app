@@ -73,6 +73,10 @@ This does not include my student loan or car loan payments that will start Oct/N
 
 Anyway I am going to work on the RN app now just to get that on my phone as a starting point.
 
+2:26 PM
+
+yeah it's funny how a spreadsheet just works, no coding required
+
 ---
 
 **09/23/2023**
