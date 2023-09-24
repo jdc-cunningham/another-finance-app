@@ -57,6 +57,22 @@ what is the value sell
 
 lol back to html tables, but it's good for copy/paste into a spreadsheet
 
+1:38 PM
+
+back from a short break
+
+2:07 PM
+
+ugh... I'm so poor, the math doesn't work out (I can't afford my life)
+
+<img src="./bills-view.jpg"/>
+
+I'll find some way though
+
+This does not include my student loan or car loan payments that will start Oct/Nov which will put me over what I make per month lol.
+
+Anyway I am going to work on the RN app now just to get that on my phone as a starting point.
+
 ---
 
 **09/23/2023**

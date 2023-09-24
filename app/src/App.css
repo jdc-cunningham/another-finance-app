@@ -16,24 +16,39 @@
   width: 100%;
 }
 
+.App__bills-table {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.App__bills-table td {
+  padding: 0.25rem;
+}
+
 .App__bills-header {
   width: 100%;
+  background-color: #282828;
+  color: white;
 }
 
 .App__bills-header th {
   font-size: 1.5rem;
-  min-width: 150px;
   text-align: left;
+  padding: 0.25rem;
 }
 
 .App__bills-header h3 {
   min-width: 150px;
 }
 
-.App__bills-table {
-  width: 100%;
+.App__bill td {
+  background-color: #dcdcdc;
 }
 
-.App__bill td {
-  min-width: 150px;
+.App__bill.upcoming td {
+  background-color: white;
+}
+
+.App__bills-total {
+  border-top: 1px solid #282828;
 }

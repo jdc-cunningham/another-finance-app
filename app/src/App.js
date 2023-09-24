@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
-import { getNetWorth, getBills, getCards, consolidateBills, sortArrByIndex } from './methods';
+import {
+  getNetWorth, getBills, getCards, consolidateBills,
+  sortArrByIndex, addCurrencySymbol
+} from './methods';
 import './App.css';
+
+const currentDate = new Date().getDate();
 
 const getData = async (setAppData) => {
   const netWorth = await getNetWorth();
@@ -16,27 +21,59 @@ const getData = async (setAppData) => {
   });
 }
 
-const renderBills = (bills) => (
-  <div className="App__bills">
-    <div className="App__bills-title">
-      <h2>Bills</h2>
+const renderBills = (bills) => {
+  let total = 0;
+  let unpaid = 0;
+
+  return (
+    <div className="App__bills">
+      <div className="App__bills-title">
+        <h2>Bills</h2>
+      </div>
+      <table className="App__bills-table">
+        <thead>
+          <tr className="App__bills-header">
+            <th>Bill Name</th>
+            <th>Amount</th>
+            <th>Due Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortArrByIndex(bills, 3).map((bill, index) => {
+            const isUpcoming = bill[3] >= currentDate;
+            const amount = parseFloat(bill[2].replace('$', ''));
+
+            total += amount;
+
+            if (isUpcoming) {
+              unpaid += amount;
+            }
+
+            return (
+              <tr key={index} className={`App__bill ${isUpcoming ? 'upcoming' : ''}`}>
+                <td>{bill[0]}</td>
+                <td>{addCurrencySymbol(bill[2])}</td>
+                <td>{bill[3]}</td>
+              </tr>
+            );
+          })}
+
+          <tr className="App__bills-total">
+            <td>Total</td>
+            <td>${total.toFixed(2)}</td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td>Unpaid</td>
+            <td>${unpaid.toFixed(2)}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <table className="App__bills-table">
-      <tr className="App__bills-header">
-        <th>Bill Name</th>
-        <th>Amount</th>
-        <th>Due Date</th>
-      </tr>
-      {sortArrByIndex(bills, 3).map(bill => (
-        <tr className="App__bill">
-          <td>{bill[0]}</td>
-          <td>{bill[2]}</td>
-          <td>{bill[3]}</td>
-        </tr>  
-      ))}
-    </table>
-  </div>
-)
+  );
+}
 
 function App() {
   const [appData, setAppData] = useState({

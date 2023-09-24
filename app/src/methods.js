@@ -92,3 +92,17 @@ export const sortArrByIndex = (arr, arrIndex) => {
   const sortedArr = arr.sort((a,b) => a[3] - b[3]).map(arr => arr);
   return sortedArr;
 }
+
+export const addCurrencySymbol = (str) => {
+  let tmpStr = str;
+
+  if (str.includes('$')) {
+    tmpStr = str.replace('$', '');
+  }
+
+  if (!tmpStr.includes('.')) {
+    tmpStr = tmpStr + '.00';
+  }
+
+  return `$${parseFloat(tmpStr).toFixed(2)}`;
+}
