@@ -1,65 +1,40 @@
 import { useState, useEffect } from 'react';
+import { getNetWorth, getBills, getCards, consolidateBills } from './methods';
 import './App.css';
 
-const apiBase = 'http://192.168.1.144:5045'; // use an env file, enum, etc...
-const apiPathGetNetWorth = `${apiBase}/get-latest-net-worth`;
-const apiPathGetBills = `${apiBase}/get-bills`;
-const apiPathGetCards = `${apiBase}/get-cards`;
-
-const getNetWorth = () => {
-  return new Promise (async (resolve, reject) => {
-    try {
-      const response = await fetch(apiPathGetNetWorth);
-      const netWorth = await response.json();
-      console.log('net worth', netWorth);
-      resolve(netWorth);
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
-
-const getBills = () => {
-  return new Promise (async (resolve, reject) => {
-    try {
-      const response = await fetch(apiPathGetBills);
-      const bills = await response.json();
-      console.log('bills', bills);
-      resolve(bills);
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
-
-const getCards = async () => {
-  return new Promise (async (resolve, reject) => {
-    try {
-      const response = await fetch(apiPathGetCards);
-      const cards = await response.json();
-      console.log('cards', cards);
-      resolve(cards);
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
-
-const filterVals = async () => {
+const getData = async (setAppData) => {
   const netWorth = await getNetWorth();
   const bills = await getBills();
   const cards = await getCards();
+
+  console.log(bills);
+
+  setAppData({
+    netWorth: netWorth.err ? {} : netWorth.data,
+    bills: bills.err ? [] : bills.data,
+    cards: cards.err ? [] : cards.data
+  });
 }
 
 function App() {
   const [appData, setAppData] = useState({
     netWorth: {},
     cards: {},
-    bills: {},
+    bills: {}
   });
 
   useEffect(() => {
-    filterVals();
+    if (appData?.bills?.length) {
+      // bills API was updated in the past to include part of networth
+      consolidateBills(appData.bills);
+    }
+  }, [appData]);
+
+  useEffect(() => {
+    if (!appData?.bills.length) {
+      console.log('call');
+      getData(setAppData);
+    }
   }, []);
 
   return (
