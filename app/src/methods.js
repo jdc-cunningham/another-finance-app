@@ -42,43 +42,53 @@ export const getCards = () => {
   });
 }
 
-export const consolidateBills = (billsData) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const bills = billsData[0];
-      const netWorthPartial = billsData[1];
-      const cardMinDues = netWorthPartial[1];
-      const accountNames = netWorthPartial[4];
-  
-      const updatedBills = [];
+export const consolidateBills = (billsData, setUpdatedBills) => {
+  try {
+    const bills = billsData[0];
+    const netWorthPartial = billsData[1];
+    const cardMinDues = netWorthPartial[1];
+    const accountNames = netWorthPartial[4];
+
+    const updatedBills = [];
+    
+    bills.forEach(bill => {
+      const name = bill[0];
+      const amount = parseFloat(bill[2].replace('$', ''));
+      const frequency = bill[4];
       
-      bills.forEach(bill => {
-        const name = bill[0];
-        const amount = parseFloat(bill[2].replace('$', ''));
-        const frequency = bill[4];
-        
-        if (amount > 0) {
-          if (accountNames.includes(name)) {
-            updatedBills.push([
-              bill[0],
-              bill[1],
-              cardMinDues[accountNames.indexOf(name)],
-              bill[3],
-              bill[4]
-            ]);
-          } else {
-            updatedBills.push(bill);
-          }
-  
-          if (frequency === 'bi-weekly') {
-            updatedBills.push(bill);
-          }
+      if (amount > 0) {
+        if (accountNames.includes(name)) {
+          updatedBills.push([
+            bill[0],
+            bill[1],
+            cardMinDues[accountNames.indexOf(name)],
+            bill[3],
+            bill[4]
+          ]);
+        } else {
+          updatedBills.push(bill);
         }
-      });
-  
-      resolve(updatedBills);
-    } catch (err) {
-      reject(err);
-    }
-  });
+
+        if (frequency === 'bi-weekly') {
+          updatedBills.push([
+            bill[0],
+            bill[1],
+            bill[2],
+            15, // push to middle of month
+            bill[4]
+          ]);
+        }
+      }
+    });
+
+    setUpdatedBills(updatedBills);
+  } catch (err) {
+    console.error('Error consolidating bills');
+  }
+}
+
+// https://stackoverflow.com/a/44288663/2710227
+export const sortArrByIndex = (arr, arrIndex) => {
+  const sortedArr = arr.sort((a,b) => a[3] - b[3]).map(arr => arr);
+  return sortedArr;
 }

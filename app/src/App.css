@@ -1,0 +1,39 @@
+.App {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.App__bills {
+  width: 100%;
+  height: 100%;
+}
+
+.App__bills-title {
+  width: 100%;
+}
+
+.App__bills-header {
+  width: 100%;
+}
+
+.App__bills-header th {
+  font-size: 1.5rem;
+  min-width: 150px;
+  text-align: left;
+}
+
+.App__bills-header h3 {
+  min-width: 150px;
+}
+
+.App__bills-table {
+  width: 100%;
+}
+
+.App__bill td {
+  min-width: 150px;
+}

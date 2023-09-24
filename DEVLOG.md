@@ -37,6 +37,28 @@ It's hard looking at a blank canvas like what will be there?
 
 alright I've got that filtered down
 
+12:41 PM
+
+Eventually I can start to see the pieces I want
+
+Like a key goal is "can I afford my bills up to my next paycheck"
+
+So that would be a time block thing, need to pull down month, weeks start/end based on sun/sat, put in a pay date/frequency, how much... then it would figure that out for you
+
+There are little discrepencies too though, like I donate to Mobian and it's quarterly I think, can either program that or just sum it for a year or whatever... those kind of decisions that throw it off.
+
+12:53 AM
+
+Everytime I work on these apps I feel like I'm remaking google spreadsheet ha
+
+what is the value sell
+
+1:04 PM
+
+lol back to html tables, but it's good for copy/paste into a spreadsheet
+
+---
+
 **09/23/2023**
 
 11:58 AM
